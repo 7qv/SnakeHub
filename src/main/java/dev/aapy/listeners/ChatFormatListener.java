@@ -1,6 +1,6 @@
 package dev.aapy.listeners;
 
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
 import dev.aapy.util.CC;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ public class ChatFormatListener implements Listener {
         if (Config.getConfig().getBoolean("CHAT-FORMAT.ENABLED")) {
             for (String chat : Config.getConfig().getStringList("CHAT-FORMAT.LINES")) {
 
-                chat = chat.replace("<prefix>", Hub.getInst().getPermission().getChat().getPlayerPrefix(p));
+                chat = chat.replace("<prefix>", SnakeHub.getInst().getPermission().getChat().getPlayerPrefix(p));
                 chat = chat.replace("<player>", p.getName());
 
                 chat = chat.replace("<message>", event.getMessage());

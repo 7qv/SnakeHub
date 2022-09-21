@@ -1,7 +1,7 @@
 package dev.aapy.manager.managers;
 
 import com.google.common.collect.Lists;
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
 import dev.aapy.file.Nametag;
 import dev.aapy.listeners.*;
@@ -30,7 +30,7 @@ public final class ListenerManager extends Handler {
     private LunarListener lunarListener;
 
 
-    public ListenerManager(Hub plugin) { super(plugin); }
+    public ListenerManager(SnakeHub plugin) { super(plugin); }
 
     @Override
     public void enable() {
@@ -38,10 +38,10 @@ public final class ListenerManager extends Handler {
         manager.registerEvents(new PlayerListener(), getPlugin());
         if (Config.getConfig().getBoolean("BOOLEANS.LUNAR-CLIENT.NAMETAG")) {
             this.lunarListener = new LunarListener();
-            this.lunarListener.runTaskTimerAsynchronously(Hub.getInst(), 5L, 10L);
+            this.lunarListener.runTaskTimerAsynchronously(SnakeHub.getInst(), 5L, 10L);
         }
         if (Nametag.getConfig().getBoolean("NAMETAGS.ENABLED")) {
-            new dev.aapy.nametags.manager.Nametag(Hub.getInst(), new NametagProvider());
+            new dev.aapy.nametags.manager.Nametag(SnakeHub.getInst(), new NametagProvider());
         }
 
         manager.registerEvents(new DeveloperListener(), getPlugin());

@@ -1,7 +1,7 @@
 package dev.aapy.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Nametag;
 import dev.aapy.util.CC;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class LunarListener extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (Player player : Hub.getInst().getServer().getOnlinePlayers()) {
+        for (Player player : SnakeHub.getInst().getServer().getOnlinePlayers()) {
             List<String> show = null;
             for (String s : Nametag.getConfig().getConfigurationSection("LUNAR-SECTION").getKeys(false)) {
                 String path = "LUNAR-SECTION." + s + ".";
@@ -29,10 +29,10 @@ public class LunarListener extends BukkitRunnable {
             }
 
             if (show == null || show.isEmpty()) return;
-            show = show.stream().map(s -> s.replace("<player>", player.getDisplayName()).replace("<rank>", Hub.getInst().getPermission().getPermission().getPrefix(player))).collect(Collectors.toList());
+            show = show.stream().map(s -> s.replace("<player>", player.getDisplayName()).replace("<rank>", SnakeHub.getInst().getPermission().getPermission().getPrefix(player))).collect(Collectors.toList());
             List<String> finalShow = show;
 
-            for (Player target : Hub.getInst().getServer().getOnlinePlayers()) {
+            for (Player target : SnakeHub.getInst().getServer().getOnlinePlayers()) {
                 LunarClientAPI.getInstance().overrideNametag(player, CC.translate(finalShow), target);
             }
         }

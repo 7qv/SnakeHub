@@ -1,12 +1,9 @@
 package dev.aapy.scoreboard;
 
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.customtimer.CustomTimer;
 import dev.aapy.customtimer.TimerFormatter;
-import dev.aapy.file.HookerFile;
 import dev.aapy.file.Scoreboard;
-import dev.aapy.hooker.Hooker;
-import dev.aapy.hooker.Splitters;
 import dev.aapy.manager.managers.ScoreBoardManager;
 import dev.aapy.scoreboard.assamble.AssembleAdapter;
 import dev.aapy.util.ActionBar;
@@ -17,10 +14,6 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,7 +25,7 @@ import java.util.List;
 
 public class ScoreBoardProvider implements AssembleAdapter {
 
-    private final ScoreBoardManager scoreboard = Hub.getInst().getManager().getScoreboard();
+    private final ScoreBoardManager scoreboard = SnakeHub.getInst().getManager().getScoreboard();
 
     @Override
     public String getTitle(Player player) {
@@ -42,20 +35,20 @@ public class ScoreBoardProvider implements AssembleAdapter {
     @Override
     public List<String> getLines(Player player) {
         final List<String> list = new ArrayList<>();
-        Collection<CustomTimer> customtimer = Hub.getInst().getCustomTimerManager().getCustomtimer();
+        Collection<CustomTimer> customtimer = SnakeHub.getInst().getCustomTimerManager().getCustomtimer();
 
-        if (Hub.queue.inQueue(player)) {
+        if (SnakeHub.queue.inQueue(player)) {
             for (String queue : Scoreboard.getConfig().getStringList("SCOREBOARD.LINES.QUEUE")) {
 
-                queue = queue.replace("<server-queue>", String.valueOf(Hub.queue.getQueueIn(player)));
-                queue = queue.replace("<position-queue>", String.valueOf(Hub.queue.getPosition(player)));
-                queue = queue.replace("<size-queue>", String.valueOf(Hub.queue.getInQueue(Hub.queue.getQueueIn(player))));
+                queue = queue.replace("<server-queue>", String.valueOf(SnakeHub.queue.getQueueIn(player)));
+                queue = queue.replace("<position-queue>", String.valueOf(SnakeHub.queue.getPosition(player)));
+                queue = queue.replace("<size-queue>", String.valueOf(SnakeHub.queue.getInQueue(SnakeHub.queue.getQueueIn(player))));
 
                 queue = queue.replace("<arrow>", StringEscapeUtils.unescapeJava("\\u2a20"));
                 queue = queue.replace("<placeholder:data>", SnakeUtil.getDate());
                 queue = queue.replace("<placeholder:time>", SnakeUtil.getHour());
                 queue = queue.replace("<players_online>", Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getServer().getMaxPlayers());
-                queue = queue.replace("<rank>", Hub.getInst().getPermission().getPermission().getPrefix(player));
+                queue = queue.replace("<rank>", SnakeHub.getInst().getPermission().getPermission().getPrefix(player));
                 queue = queue.replace("<player>", player.getName());
                 queue = queue.replace("<footers>", Scoreboard.getConfig().getBoolean("SCOREBOARD.ANIMATED.FOOTER.ENABLED") ? AnimationTask.getScoreboardFooter() : CC.translate(Scoreboard.getConfig().getString("SCOREBOARD.FOOTER")));
 
@@ -67,7 +60,7 @@ public class ScoreBoardProvider implements AssembleAdapter {
                 lines = lines.replace("<placeholder:data>", SnakeUtil.getDate());
                 lines = lines.replace("<placeholder:time>", SnakeUtil.getHour());
                 lines = lines.replace("<players_online>", Bukkit.getOnlinePlayers().size() + "/" + Bukkit.getServer().getMaxPlayers());
-                lines = lines.replace("<rank>", Hub.getInst().getPermission().getPermission().getPrefix(player));
+                lines = lines.replace("<rank>", SnakeHub.getInst().getPermission().getPermission().getPrefix(player));
                 lines = lines.replace("<player>", player.getName());
                 lines = lines.replace("<footers>", Scoreboard.getConfig().getBoolean("SCOREBOARD.ANIMATED.FOOTER.ENABLED") ? AnimationTask.getScoreboardFooter() : CC.translate(Scoreboard.getConfig().getString("SCOREBOARD.FOOTER")));
 

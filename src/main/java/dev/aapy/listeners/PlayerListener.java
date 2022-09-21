@@ -2,7 +2,7 @@ package dev.aapy.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import com.lunarclient.bukkitapi.nethandler.client.LCPacketTitle;
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
 import dev.aapy.file.Message;
 import dev.aapy.util.CC;
@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         double z = Config.getConfig().getDouble("SPAWN.Z");
         float yaw = Float.parseFloat(Config.getConfig().getString("SPAWN.YAW"));
         float pitch = Float.parseFloat(Config.getConfig().getString("SPAWN.PITCH"));
-        World world = Hub.getInst().getServer().getWorld(Config.getConfig().getString("SPAWN.WORLD"));
+        World world = SnakeHub.getInst().getServer().getWorld(Config.getConfig().getString("SPAWN.WORLD"));
 
         Location l = new Location(world, x, y, z, yaw, pitch);
         p.teleport(l);
@@ -59,7 +59,7 @@ public class PlayerListener implements Listener {
             for (final String msg : Message.getConfig().getStringList("JOIN.MESSAGE")) {
                 p.sendMessage(CC.translate(msg)
                         .replace("<player>", p.getName())
-                        .replace("<rank>", CC.translate(Hub.getInst().getPermission().getPermission().getPrefix(p)))
+                        .replace("<rank>", CC.translate(SnakeHub.getInst().getPermission().getPermission().getPrefix(p)))
                         .replace("<store>", CC.translate(Config.getConfig().getString("SOCIAL.STORE")))
                         .replace("<team-speak>", CC.translate(Config.getConfig().getString("SOCIAL.TEAMSPEAK")))
                         .replace("<twitter>", CC.translate(Config.getConfig().getString("SOCIAL.TWITTER")))

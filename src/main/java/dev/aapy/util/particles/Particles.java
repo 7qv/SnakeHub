@@ -1,6 +1,6 @@
 package dev.aapy.util.particles;
 
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
 import dev.aapy.util.ArmorCreator;
 import dev.aapy.util.CC;
@@ -57,44 +57,44 @@ public class Particles implements Listener {
                 if (event.getSlot() == 12 - 1) {
                     if(ParticleParameter.set.containsKey(player)){
                         Bukkit.getScheduler().cancelTask((int)ParticleParameter.set.get(player));
-                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.FLAME.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.FLAME.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been Changed your &cParticle!"));
                         player.closeInventory();
                     }else {
-                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.FLAME.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.FLAME.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been set &6Flame &fParticle!"));
                         player.closeInventory();
                     }
                     }else if(event.getSlot() == 14 - 1){
                     if(ParticleParameter.set.containsKey(player)){
                         Bukkit.getScheduler().cancelTask((int)ParticleParameter.set.get(player));
-                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.EXPLOSION_NORMAL.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.EXPLOSION_NORMAL.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been Changed your &cParticle!"));
                         player.closeInventory();
                     }else {
-                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.EXPLOSION_NORMAL.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.EXPLOSION_NORMAL.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been set &eExplosion &fParticle!"));
                         player.closeInventory();
                     }
                     }else if(event.getSlot() == 16 - 1){
                     if(ParticleParameter.set.containsKey(player)){
                         Bukkit.getScheduler().cancelTask((int)ParticleParameter.set.get(player));
-                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.HEART.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.HEART.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been Changed your &cParticle!"));
                         player.closeInventory();
                     }else {
-                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.HEART.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.HEART.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been set &cHeart &fParticle!"));
                         player.closeInventory();
                     }
                     }else if(event.getSlot() == 18 - 1) {
                     if (ParticleParameter.set.containsKey(player)) {
                         Bukkit.getScheduler().cancelTask((int) ParticleParameter.set.get(player));
-                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.DRIP_WATER.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.replace(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.DRIP_WATER.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been Changed your &cParticle!"));
                         player.closeInventory();
                     } else {
-                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) Hub.getInst(), () -> ParticleEffect.DRIP_WATER.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
+                        ParticleParameter.set.put(player, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> ParticleEffect.DRIP_WATER.display(10.0f, 15.0f, 0.0f, 0.0f, 0, player.getLocation().add(-0.0, 2.0, 0.0), 10.0), 0L, 0L));
                         player.sendMessage(CC.translate("&fYou has been set &cWater &fParticle!"));
                         player.closeInventory();
                     }

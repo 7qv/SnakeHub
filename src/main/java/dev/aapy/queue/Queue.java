@@ -1,6 +1,6 @@
 package dev.aapy.queue;
 
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -48,7 +48,7 @@ public class Queue {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
                 out.writeUTF("Connect");
                 out.writeUTF(server);
-                p.getPlayer().sendPluginMessage(Hub.getInst(), "BungeeCord", out.toByteArray());
+                p.getPlayer().sendPluginMessage(SnakeHub.getInst(), "BungeeCord", out.toByteArray());
                 break;
         }
     }

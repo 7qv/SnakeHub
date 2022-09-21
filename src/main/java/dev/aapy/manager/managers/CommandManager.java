@@ -1,7 +1,7 @@
 package dev.aapy.manager.managers;
 
 import com.google.common.collect.Lists;
-import dev.aapy.Hub;
+import dev.aapy.SnakeHub;
 import dev.aapy.commands.admin.CustomTimerCMD;
 import dev.aapy.commands.admin.SetSpawn;
 import dev.aapy.commands.admin.SendTitle;
@@ -23,7 +23,7 @@ public final class CommandManager extends Handler {
     private final List<Handler> commands = Lists.newArrayList();
     private Command command;
 
-    public CommandManager(Hub plugin) { super(plugin); }
+    public CommandManager(SnakeHub plugin) { super(plugin); }
 
     @Override
     public void enable() {
