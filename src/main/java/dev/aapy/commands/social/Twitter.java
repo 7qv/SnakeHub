@@ -14,13 +14,13 @@ import org.bukkit.command.CommandSender;
 public class Twitter extends CommandExecutor {
 
     public Twitter() {
-        super("twitter", "Twitter Command", "hubcore.twitter.command");
+        super("twitter", "Twitter Command", "hub.twitter.command");
     }
 
    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Message.getConfig().getStringList("SOCIAL.TWITTER").forEach((s) -> {
-            sender.sendMessage(CC.translate(s.replace("{twitter}", Config.getConfig().getString("SOCIAL.TWITTER"))));
+            sender.sendMessage(CC.translate(s.replace("<twitter>", Config.getConfig().getString("SOCIAL.TWITTER"))));
         });
         return true;
     }

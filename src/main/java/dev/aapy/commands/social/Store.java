@@ -14,13 +14,13 @@ import org.bukkit.command.CommandSender;
 public class Store extends CommandExecutor {
 
     public Store() {
-        super("store", "Store Command", "hubcore.store.command");
+        super("store", "Store Command", "hub.store.command");
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Message.getConfig().getStringList("SOCIAL.STORE").forEach((s) -> {
-            sender.sendMessage(CC.translate(s.replace("{store}", Config.getConfig().getString("SOCIAL.STORE"))));
+            sender.sendMessage(CC.translate(s.replace("<store>", Config.getConfig().getString("SOCIAL.STORE"))));
         });
         return true;
     }

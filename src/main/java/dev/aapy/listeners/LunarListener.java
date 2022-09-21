@@ -1,44 +1,40 @@
 package dev.aapy.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
-import dev.aapy.SnakeHub;
+import dev.aapy.Hub;
+import dev.aapy.file.Nametag;
 import dev.aapy.util.CC;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 7qv_ on 9/2/2022.
  * @project SnakeHub
  */
-public class LunarListener implements Listener {
+public class LunarListener extends BukkitRunnable {
 
-    public void updateNameTag( Player player) {
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-            Player player2 = onlinePlayer.getPlayer();
-            scheduler.scheduleSyncRepeatingTask((Plugin) SnakeHub.getInst(), () -> LunarClientAPI.getInstance().overrideNametag(player2, (List)this.resetNameTag(player2), player), 0L, 20L);
+    @Override
+    public void run() {
+        for (Player player : Hub.getInst().getServer().getOnlinePlayers()) {
+            List<String> show = null;
+            for (String s : Nametag.getConfig().getConfigurationSection("LUNAR-SECTION").getKeys(false)) {
+                String path = "LUNAR-SECTION." + s + ".";
+                if (player.hasPermission(Nametag.getConfig().getString(path + "PERMISSION"))) {
+                    show = Nametag.getConfig().getStringList(path + "LINE");
+                    break;
+                }
+            }
+
+            if (show == null || show.isEmpty()) return;
+            show = show.stream().map(s -> s.replace("<player>", player.getDisplayName()).replace("<rank>", Hub.getInst().getPermission().getPermission().getPrefix(player))).collect(Collectors.toList());
+            List<String> finalShow = show;
+
+            for (Player target : Hub.getInst().getServer().getOnlinePlayers()) {
+                LunarClientAPI.getInstance().overrideNametag(player, CC.translate(finalShow), target);
+            }
         }
-    }
-
-    public List<String> resetNameTag(Player player) {
-        List<String> tag = new ArrayList<String>(); {
-            tag.add(CC.translate(SnakeHub.getInst().getPermission().getPermission().getPrefix(player)));
-        }
-        tag.add(CC.translate(SnakeHub.getInst().getPermission().getPermission().getPrefix(player) + player.getName()));
-        return tag;
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        this.updateNameTag(player);
     }
 }

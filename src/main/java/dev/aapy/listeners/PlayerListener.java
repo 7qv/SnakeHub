@@ -2,7 +2,7 @@ package dev.aapy.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import com.lunarclient.bukkitapi.nethandler.client.LCPacketTitle;
-import dev.aapy.SnakeHub;
+import dev.aapy.Hub;
 import dev.aapy.file.Config;
 import dev.aapy.file.Message;
 import dev.aapy.util.CC;
@@ -39,6 +39,17 @@ public class PlayerListener implements Listener {
         p.getInventory().setLeggings(new ArmorCreator(Material.LEATHER_LEGGINGS).setColor(Color.AQUA).create());
         p.getInventory().setBoots(new ArmorCreator(Material.LEATHER_BOOTS).setColor(Color.AQUA).create());
         p.playSound(p.getLocation(), Sound.WITHER_SPAWN, 1F, 1F);
+
+        double x = Config.getConfig().getDouble("SPAWN.X");
+        double y = Config.getConfig().getDouble("SPAWN.Y");
+        double z = Config.getConfig().getDouble("SPAWN.Z");
+        float yaw = Float.parseFloat(Config.getConfig().getString("SPAWN.YAW"));
+        float pitch = Float.parseFloat(Config.getConfig().getString("SPAWN.PITCH"));
+        World world = Hub.getInst().getServer().getWorld(Config.getConfig().getString("SPAWN.WORLD"));
+
+        Location l = new Location(world, x, y, z, yaw, pitch);
+        p.teleport(l);
+
         // MESSAGE
         if (Message.getConfig().getBoolean("TITLE.ENABLED")) {
             LunarClientAPI.getInstance().sendPacket(p, new LCPacketTitle("TITLE", CC.translate(PlaceholderAPI.setPlaceholders(p, Message.getConfig().getString("TITLE.JOIN.TITLE.MESSAGE"))), TimeUnit.MILLISECONDS.toSeconds(10), TimeUnit.MILLISECONDS.toSeconds(10), TimeUnit.MILLISECONDS.toSeconds(10)));
@@ -47,13 +58,13 @@ public class PlayerListener implements Listener {
         if (Config.getConfig().getBoolean("BOOLEANS.JOIN-MESSAGE")) {
             for (final String msg : Message.getConfig().getStringList("JOIN.MESSAGE")) {
                 p.sendMessage(CC.translate(msg)
-                        .replace("{ign}", p.getName())
-                        .replace("{rank}", CC.translate(SnakeHub.getInst().getPermission().getPermission().getPrefix(p)))
-                        .replace("{store}", CC.translate(Config.getConfig().getString("SOCIAL.STORE")))
-                        .replace("{team-speak}", CC.translate(Config.getConfig().getString("SOCIAL.TEAMSPEAK")))
-                        .replace("{twitter}", CC.translate(Config.getConfig().getString("SOCIAL.TWITTER")))
-                        .replace("{discord}", CC.translate(Config.getConfig().getString("SOCIAL.DISCORD")))
-                        .replace("{web-site}", CC.translate(Config.getConfig().getString("SOCIAL.WEBSITE"))));
+                        .replace("<player>", p.getName())
+                        .replace("<rank>", CC.translate(Hub.getInst().getPermission().getPermission().getPrefix(p)))
+                        .replace("<store>", CC.translate(Config.getConfig().getString("SOCIAL.STORE")))
+                        .replace("<team-speak>", CC.translate(Config.getConfig().getString("SOCIAL.TEAMSPEAK")))
+                        .replace("<twitter>", CC.translate(Config.getConfig().getString("SOCIAL.TWITTER")))
+                        .replace("<discord>", CC.translate(Config.getConfig().getString("SOCIAL.DISCORD")))
+                        .replace("<web-site>", CC.translate(Config.getConfig().getString("SOCIAL.WEBSITE"))));
             }
         }
     }
@@ -74,8 +85,8 @@ public class PlayerListener implements Listener {
         if (Config.getConfig().getBoolean("BOOLEANS.QUIT-MESSAGE")) {
             for (final String msg : Message.getConfig().getStringList("QUIT.MESSAGE")) {
                 p.sendMessage(CC.translate(msg)
-                        .replace("{ign}", p.getName())
-                        .replace("{rank}", CC.translate(AquaCoreAPI.INSTANCE.getPlayerRank(p.getUniqueId()).getColor().toString() + AquaCoreAPI.INSTANCE.getPlayerRank(p.getUniqueId()).getPrefix().toString())));
+                        .replace("<player>", p.getName())
+                        .replace("<rank>", CC.translate(AquaCoreAPI.INSTANCE.getPlayerRank(p.getUniqueId()).getColor().toString() + AquaCoreAPI.INSTANCE.getPlayerRank(p.getUniqueId()).getPrefix().toString())));
             }
         }
     }

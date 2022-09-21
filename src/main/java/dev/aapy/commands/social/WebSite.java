@@ -14,13 +14,13 @@ import org.bukkit.command.CommandSender;
 public class WebSite extends CommandExecutor {
 
     public WebSite() {
-        super("website", "WebSite Command","hubcore.website.command");
+        super("website", "WebSite Command","hub.website.command", new String[]{"web"});
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Message.getConfig().getStringList("SOCIAL.WEBSITE").forEach((s) -> {
-            sender.sendMessage(CC.translate(s.replace("{website}", Config.getConfig().getString("SOCIAL.WEBSITE"))));
+            sender.sendMessage(CC.translate(s.replace("<website>", Config.getConfig().getString("SOCIAL.WEBSITE"))));
         });
         return true;
     }

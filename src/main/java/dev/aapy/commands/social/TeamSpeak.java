@@ -14,13 +14,13 @@ import org.bukkit.command.CommandSender;
 public class TeamSpeak extends CommandExecutor {
 
     public TeamSpeak() {
-        super("teamspeak", "TeamSpeak Command", "hubcore.teamspeak.command", new String[]{"ts"});
+        super("teamspeak", "TeamSpeak Command", "hub.teamspeak.command", new String[]{"ts"});
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Message.getConfig().getStringList("SOCIAL.TEAMSPEAK").forEach((s) -> {
-            sender.sendMessage(CC.translate(s.replace("{team-speak}", Config.getConfig().getString("SOCIAL.TEAMSPEAK"))));
+            sender.sendMessage(CC.translate(s.replace("<team-speak>", Config.getConfig().getString("SOCIAL.TEAMSPEAK"))));
         });
         return true;
     }

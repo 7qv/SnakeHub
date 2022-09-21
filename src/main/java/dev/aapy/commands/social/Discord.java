@@ -14,13 +14,13 @@ import org.bukkit.command.CommandSender;
 public class Discord extends CommandExecutor {
 
     public Discord() {
-        super("discord", "Discord command", "hubcore.discord.command", new String[]{"dc"});
+        super("discord", "Discord command", "hub.discord.command", new String[]{"dc"});
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Message.getConfig().getStringList("SOCIAL.DISCORD").forEach((s) -> {
-            sender.sendMessage(CC.translate(s.replace("{discord}", Config.getConfig().getString("SOCIAL.DISCORD"))));
+            sender.sendMessage(CC.translate(s.replace("<discord>", Config.getConfig().getString("SOCIAL.DISCORD"))));
         });
         return true;
     }
