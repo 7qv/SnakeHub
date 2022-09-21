@@ -13,7 +13,7 @@ import me.signatured.ezqueuespigot.EzQueueAPI;
 
 public class Queue {
 
-    public QueueEnum getQueueSupport() {
+   /* public QueueEnum getQueueSupport() {
         if (Config.getConfig().getBoolean("QUEUESYSTEM.EZQUEUE.ENABLED")) {
             return QueueEnum.EZQUEUE;
         } else {
@@ -84,6 +84,5 @@ public class Queue {
                 return me.joeleoli.portal.shared.queue.Queue.getByName(queue).getPlayers().size();
             default:
                 return 0;
-        }
-    }
+        //*/
 }

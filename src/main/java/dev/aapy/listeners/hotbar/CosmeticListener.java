@@ -1,10 +1,10 @@
 package dev.aapy.listeners.hotbar;
 
 import dev.aapy.file.Config;
-import dev.aapy.listeners.hotbar.particles.Particles;
 import dev.aapy.util.ArmorCreator;
 import dev.aapy.util.ItemCreator;
 import dev.aapy.util.CC;
+import dev.aapy.util.particles.Particles;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
