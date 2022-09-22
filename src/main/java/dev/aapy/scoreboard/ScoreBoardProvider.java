@@ -37,7 +37,7 @@ public class ScoreBoardProvider implements AssembleAdapter {
         final List<String> list = new ArrayList<>();
         Collection<CustomTimer> customtimer = SnakeHub.getInst().getCustomTimerManager().getCustomtimer();
 
-        if (SnakeHub.queue.inQueue(player)) {
+       /* if (SnakeHub.queue.inQueue(player)) {
             for (String queue : Scoreboard.getConfig().getStringList("SCOREBOARD.LINES.QUEUE")) {
 
                 queue = queue.replace("<server-queue>", String.valueOf(SnakeHub.queue.getQueueIn(player)));
@@ -53,8 +53,7 @@ public class ScoreBoardProvider implements AssembleAdapter {
                 queue = queue.replace("<footers>", Scoreboard.getConfig().getBoolean("SCOREBOARD.ANIMATED.FOOTER.ENABLED") ? AnimationTask.getScoreboardFooter() : CC.translate(Scoreboard.getConfig().getString("SCOREBOARD.FOOTER")));
 
                 list.add(PlaceholderAPI.setPlaceholders(player, queue));
-            }
-        } else {
+            /*/
             for (String lines : Scoreboard.getConfig().getStringList("SCOREBOARD.LINES.NORMAL")) {
                 lines = lines.replace("<arrow>", StringEscapeUtils.unescapeJava("\\u2a20"));
                 lines = lines.replace("<placeholder:data>", SnakeUtil.getDate());
@@ -66,7 +65,6 @@ public class ScoreBoardProvider implements AssembleAdapter {
 
                 list.add(PlaceholderAPI.setPlaceholders(player, lines));
             }
-        }
 
         if(!customtimer.isEmpty()) {
             for (final CustomTimer timer : customtimer) {

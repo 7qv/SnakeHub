@@ -1,6 +1,6 @@
 package dev.aapy.listeners;
 
-import dev.aapy.hotbar.PvPListener;
+import dev.aapy.listeners.hotbar.PvPListener;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

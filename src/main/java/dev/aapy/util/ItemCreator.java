@@ -1,8 +1,10 @@
 package dev.aapy.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -36,6 +38,21 @@ public class ItemCreator {
     public ItemCreator(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
+
+    public static ItemStack createItemStack(String name, List<String> lore, Material material, int amount, int data) {
+        ItemStack item = new ItemStack(material, amount, (short) data);
+        ItemMeta itemmeta = item.getItemMeta();
+        itemmeta.setDisplayName(CC.translate(name));
+        itemmeta.setLore(CC.translateFromArray(lore));
+        item.setItemMeta(itemmeta);
+        return item;
+    }
+
+    public static Inventory createInventory(String title, int rows) {
+        Inventory inv = Bukkit.getServer().createInventory(null, rows * 9, CC.translate(title));
+        return inv;
+    }
+
 
     public ItemCreator material(Material material){
         this.material = material;

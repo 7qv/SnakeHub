@@ -3,7 +3,7 @@ package dev.aapy;
 import dev.aapy.customtimer.CustomTimerManager;
 import dev.aapy.file.*;
 import dev.aapy.hooker.Hooker;
-import dev.aapy.hotbar.PvPListener;
+import dev.aapy.listeners.hotbar.PvPListener;
 import dev.aapy.manager.Manager;
 import dev.aapy.manager.managers.PermissionManager;
 import dev.aapy.queue.Queue;

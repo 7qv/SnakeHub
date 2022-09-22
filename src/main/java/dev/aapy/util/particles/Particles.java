@@ -2,6 +2,7 @@ package dev.aapy.util.particles;
 
 import dev.aapy.SnakeHub;
 import dev.aapy.file.Config;
+import dev.aapy.listeners.hotbar.particles.ParticleParameter;
 import dev.aapy.util.ArmorCreator;
 import dev.aapy.util.CC;
 import dev.aapy.util.ItemCreator;
